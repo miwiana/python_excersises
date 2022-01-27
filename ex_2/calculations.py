@@ -54,9 +54,14 @@ if __name__ == "__main__":
     # unify data
     unified_data_rows = calculate_total_price_in_pln(curr_rows, data_rows)
 
-    # get data
-    matched_rows = get_rows_with_proper_matching_id(unified_data_rows, 1)
-    sorted_rows = sort_rows_by_price_desc(matched_rows)
-    top_rows = get_top_priced_rows(sorted_rows, 2)
-    print(top_rows)
+    # define what to get
+    for pair in match_rows:
+        match_id = pair[0]
+        top_count = pair[1]
+
+        # get proper data
+        matched_rows = get_rows_with_proper_matching_id(unified_data_rows, int(match_id))
+        sorted_rows = sort_rows_by_price_desc(matched_rows)
+        top_rows = get_top_priced_rows(sorted_rows, int(top_count))
+        print(top_rows)
 
