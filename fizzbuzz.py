@@ -24,17 +24,35 @@ def validate_input_numbers(n, m):
 
     if n < 1:
         flag = False
-        print("Provided N number is lower than 1 ")
+        print("Provided first number is lower than 1.")
 
     if m > 10000:
         flag = False
-        print("Provided M number is greater than 10000 ")
+        print("Provided second number is greater than 10000.")
 
     if flag == False:
         raise ValueError("Provided data did not follow expected condition")
+
+
+def print_integers(n, m):
+    ordered_output = []
+    for i in range(n, m+1):
+        if i % 15 == 0:
+            i = "FizzBuzz"
+        elif i % 3 == 0:
+            i = "Fizz"
+        elif i % 5 == 0:
+            i = "Buzz"
+        else:
+            i = str(i)
+        ordered_output.append(i)
+
+    for x in ordered_output:
+        print(x)
 
 
 if __name__ == "__main__":
     n = get_n_value()
     m = get_m_value()
     validate_input_numbers(n, m)
+    print_integers(n, m)
