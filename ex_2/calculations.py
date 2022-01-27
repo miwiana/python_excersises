@@ -65,3 +65,5 @@ if __name__ == "__main__":
         top_rows = get_top_priced_rows(sorted_rows, int(top_count))
         print(top_rows)
 
+#TODO: saving to CSV file with new items: avg and ignored prod count
+#TODO: change way of saving initial currency
