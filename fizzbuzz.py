@@ -1,17 +1,15 @@
 
 def get_n_value():
-    n = 0
     try:
-        n = int(input("Please enter the first number: "))
+        n = int(input("Please enter the first number (N): "))
     except ValueError:
         print("Entered sign is not an integer. Try again")
     return n
 
 
 def get_m_value():
-    m = 0
     try:
-        m = int(input("Please enter the second number which is > than first one: "))
+        m = int(input("Please enter the second number (M) which is > than first one: "))
     except ValueError:
         print("Entered sign is not an integer. Try again")
     return m
@@ -36,7 +34,7 @@ def validate_input_numbers(n, m):
         raise ValueError("Provided data did not follow expected condition")
 
 
-
-
-
-
+if __name__ == "__main__":
+    n = get_n_value()
+    m = get_m_value()
+    validate_input_numbers(n, m)
