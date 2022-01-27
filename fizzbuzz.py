@@ -30,8 +30,7 @@ def validate_input_numbers(n, m):
         flag = False
         print("Provided second number is greater than 10000.")
 
-    if flag == False:
-        raise ValueError("Provided data did not follow expected condition")
+    return flag
 
 
 def print_integers(n, m):
@@ -52,7 +51,9 @@ def print_integers(n, m):
 
 
 if __name__ == "__main__":
-    n = get_n_value()
-    m = get_m_value()
-    validate_input_numbers(n, m)
+    flag = False
+    while flag == False:
+        n = get_n_value()
+        m = get_m_value()
+        flag = validate_input_numbers(n, m)
     print_integers(n, m)
