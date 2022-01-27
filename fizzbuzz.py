@@ -18,7 +18,7 @@ def get_m_value():
 def validate_input_numbers(n, m):
     "Input numbers must follow condition: 1 <= n < m <=10000"
     flag = True
-    if n > m:
+    if n >= m:
         flag = False
         print("Provided numbers did not follow condition: n < m ")
 
