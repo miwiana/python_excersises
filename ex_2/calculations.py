@@ -11,6 +11,13 @@ def read_csv_file(path_to_file):
     return headers, rows
 
 
+def write_csv_file(path_to_file, headers: list, row_list: list):
+    with open(path_to_file, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        writer.writerows(row_list)
+
+
 def calculate_total_price_in_pln(currencies, data_rows):
     curr_for_calc = {}
     for curr in currencies:
@@ -55,7 +62,7 @@ if __name__ == "__main__":
     unified_data_rows = calculate_total_price_in_pln(curr_rows, data_rows)
 
     # define what to get
-    for pair in match_rows:
+    for idx, pair in enumerate(match_rows):
         match_id = pair[0]
         top_count = pair[1]
 
@@ -64,6 +71,7 @@ if __name__ == "__main__":
         sorted_rows = sort_rows_by_price_desc(matched_rows)
         top_rows = get_top_priced_rows(sorted_rows, int(top_count))
         print(top_rows)
+        write_csv_file(f"output_{idx}.csv", data_header, top_rows)
 
-#TODO: saving to CSV file with new items: avg and ignored prod count
+#TODO: missing: avg and ignored prod count in output csv file
 #TODO: change way of saving initial currency
