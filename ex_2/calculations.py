@@ -1,4 +1,5 @@
 import csv
+from os import path
 
 
 def read_csv_file(path_to_file):
@@ -53,11 +54,11 @@ def get_top_priced_rows(data_rows: list, rows_amount: int):
     return data_rows[:rows_amount]
 
 
-if __name__ == "__main__":
+def main_function(path_to_data, path_to_curr, path_to_match, path_to_output):
     # read files
-    data_header, data_rows = read_csv_file("data.csv")
-    curr_header, curr_rows = read_csv_file("currencies.csv")
-    match_header, match_rows = read_csv_file("matchings.csv")
+    data_header, data_rows = read_csv_file(path_to_data)
+    curr_header, curr_rows = read_csv_file(path_to_curr)
+    match_header, match_rows = read_csv_file(path_to_match)
     # unify data
     unified_data_rows = calculate_total_price_in_pln(curr_rows, data_rows)
 
@@ -75,9 +76,17 @@ if __name__ == "__main__":
         top_rows = get_top_priced_rows(sorted_rows, int(top_count))
         for row in top_rows:
             output.append(row)
-        print(top_rows)
+    output_path = path.join(path_to_output)
+    write_csv_file(output_path, data_header, output)
 
-    write_csv_file("top_products.csv", data_header, output)
+
+if __name__ == "__main__":
+    main_function(
+        path_to_data=path.join(path.dirname(__file__), "data.csv"),
+        path_to_curr=path.join(path.dirname(__file__), "currencies.csv"),
+        path_to_match=path.join(path.dirname(__file__), "matchings.csv"),
+        path_to_output=path.join(path.dirname(__file__), "top_products.csv"),
+    )
 
 # TODO: missing: avg and ignored prod count in output csv file
 # TODO: change way of saving initial currency
