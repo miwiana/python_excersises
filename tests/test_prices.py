@@ -44,3 +44,11 @@ class TestExcerciseTwo:
         assert (
             len(get_rows_with_matching_id_3(output_file_path)) == 3
         ), "Entries with matching_id=3 should be 3"
+
+    def test_check_if_saved_rows_were_top_priced(self, output_file_path):
+        rows = get_rows(output_file_path)
+        exp_ids = [2, 4, 5, 6, 7, 8, 9]
+        ids = []
+        for row in rows:
+            ids.append(int(row[0]))
+        assert sorted(exp_ids) == sorted(ids), "Not top priced data were saved in output file"
