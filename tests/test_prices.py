@@ -2,7 +2,7 @@
 class TestExcerciseTwo:
 
     def test_check_result_file(self):
-        pass
+
 
     def test_check_headers_of_result_file(self):
         pass

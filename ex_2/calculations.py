@@ -62,6 +62,7 @@ if __name__ == "__main__":
     unified_data_rows = calculate_total_price_in_pln(curr_rows, data_rows)
 
     # define what to get
+    output = []
     for idx, pair in enumerate(match_rows):
         match_id = pair[0]
         top_count = pair[1]
@@ -70,8 +71,11 @@ if __name__ == "__main__":
         matched_rows = get_rows_with_proper_matching_id(unified_data_rows, int(match_id))
         sorted_rows = sort_rows_by_price_desc(matched_rows)
         top_rows = get_top_priced_rows(sorted_rows, int(top_count))
+        for row in top_rows:
+            output.append(row)
         print(top_rows)
-        write_csv_file(f"output_{idx}.csv", data_header, top_rows)
+
+    write_csv_file("top_products.csv", data_header, output)
 
 #TODO: missing: avg and ignored prod count in output csv file
 #TODO: change way of saving initial currency
