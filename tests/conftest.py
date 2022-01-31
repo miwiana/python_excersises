@@ -10,7 +10,7 @@ def output_file_path():
 
 
 @pytest.fixture(scope="class")
-def run_script_and_create_output(output_file_path):
+def run_script_and_create_output():
     main_function(
         path_to_data=path.join(path.dirname(__file__), "test_data/data.csv"),
         path_to_curr=path.join(path.dirname(__file__), "test_data/currencies.csv"),
