@@ -3,7 +3,7 @@ import csv
 
 def read_csv_file(path_to_file):
     rows = []
-    with open(path_to_file, 'r') as file:
+    with open(path_to_file, "r") as file:
         csv_reader = csv.reader(file)
         headers = next(csv_reader)
         for row in csv_reader:
@@ -12,7 +12,7 @@ def read_csv_file(path_to_file):
 
 
 def write_csv_file(path_to_file, headers: list, row_list: list):
-    with open(path_to_file, 'w', newline='') as file:
+    with open(path_to_file, "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(headers)
         writer.writerows(row_list)
@@ -68,7 +68,9 @@ if __name__ == "__main__":
         top_count = pair[1]
 
         # get proper data
-        matched_rows = get_rows_with_proper_matching_id(unified_data_rows, int(match_id))
+        matched_rows = get_rows_with_proper_matching_id(
+            unified_data_rows, int(match_id)
+        )
         sorted_rows = sort_rows_by_price_desc(matched_rows)
         top_rows = get_top_priced_rows(sorted_rows, int(top_count))
         for row in top_rows:
@@ -77,5 +79,5 @@ if __name__ == "__main__":
 
     write_csv_file("top_products.csv", data_header, output)
 
-#TODO: missing: avg and ignored prod count in output csv file
-#TODO: change way of saving initial currency
+# TODO: missing: avg and ignored prod count in output csv file
+# TODO: change way of saving initial currency
